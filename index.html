@@ -77,16 +77,6 @@
     <button onclick="alert('Теперь ты официально туземец!')">Готово</button>
   </div>
 
-  function saveUser() {
-  const name = document.getElementById('username').value;
-  if (name.trim() !== "") {
-    localStorage.setItem("tribeName", name);
-    window.location.href = "profile.html"; // переходим на страницу туземца
-  } else {
-    alert("Введите имя, о, туземец!");
-  }
-}
-
   <div id="popup">
     <p>😄 Ты лох.</p>
     <button onclick="closeAll()">Закрыть</button>
@@ -107,6 +97,15 @@
       document.getElementById('overlay').style.display = 'none';
     }
   </script>
+  function saveUser() {
+  const name = document.getElementById('username').value;
+  if (name.trim() !== "") {
+    localStorage.setItem("tribeName", name);
+    window.location.href = "profile.html"; // переходим на страницу туземца
+  } else {
+    alert("Введите имя, о, туземец!");
+  }
+}
 
 </body>
 </html>
