@@ -34,7 +34,7 @@
     button:hover {
       background-color: #3399cc;
     }
-    #popup, #registration {
+    #registration {
       display: none;
       background-color: #fff;
       color: #000;
@@ -62,49 +62,64 @@
   <h1>Мотивация от туземцев</h1>
   <h2>тролололололо</h2>
 
-<img src="f.jfif" alt="Мудрый туземец" style="max-width: 100%; border-radius: 12px; margin: 30px 0;">
+  <img src="f.jfif" alt="Мудрый туземец" style="max-width: 100%; border-radius: 12px; margin: 30px 0;">
   
   <button onclick="showRegistration()">Начать</button>
   <button onclick="showPopup()">Не нажимать</button>
 
   <div id="overlay" onclick="closeAll()"></div>
 
+  <!-- Окно регистрации -->
   <div id="registration">
     <h3>Регистрация</h3>
     <p>Введите имя туземца:</p>
-    <input type="text" placeholder="Ваше имя">
+    <input type="text" id="username" placeholder="Ваше имя">
     <br><br>
-    <button onclick="alert('Теперь ты официально туземец!')">Готово</button>
+    <button onclick="saveUser()">Готово</button>
   </div>
 
-  <div id="popup">
+  <!-- Всплывающее окно -->
+  <div id="popup" style="display: none;">
     <p>😄 Ты лох.</p>
     <button onclick="closeAll()">Закрыть</button>
   </div>
 
   <script>
+    // Открыть окно регистрации
     function showRegistration() {
       document.getElementById('registration').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
+
+    // Открыть "лох"-попап
     function showPopup() {
       document.getElementById('popup').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
+
+    // Закрыть все окна
     function closeAll() {
       document.getElementById('registration').style.display = 'none';
       document.getElementById('popup').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
-  </scriptfunction saveUser() {
-  const name = document.getElementById('username').value;
-  if (name.trim() !== "") {
-    localStorage.setItem("tribeName", name);
-    window.location.href = "profile.html"; // переходим на страницу туземца
-  } else {
-    alert("Введите имя, о, туземец!");
-  }
-}>
- 
+
+    // Сохранить имя и перейти на профиль
+    function saveUser() {
+      const name = document.getElementById('username').value;
+      if (name.trim() !== "") {
+        localStorage.setItem("tribeName", name);
+        window.location.href = "profile.html";
+      } else {
+        alert("Введите имя, о, туземец!");
+      }
+    }
+
+    // Если имя уже сохранено — сразу на профиль
+    if (localStorage.getItem("tribeName")) {
+      window.location.href = "profile.html";
+    }
+  </script>
+
 </body>
 </html>
