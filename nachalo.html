@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мотивация от туземцев</title>
+  <style>
+    body {
+      background-color: #1e3f66;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 60px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #4db8ff;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 40px;
+      color: #b3dcff;
+    }
+    button {
+      background-color: #4db8ff;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3399cc;
+    }
+    #popup, #registration {
+      display: none;
+      background-color: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      max-width: 300px;
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Мотивация от туземцев</h1>
+  <h2>тролололололо</h2>
+
+  <button onclick="showRegistration()">Начать</button>
+  <button onclick="showPopup()">Не нажимать</button>
+
+  <div id="overlay" onclick="closeAll()"></div>
+
+  <div id="registration">
+    <h3>Регистрация</h3>
+    <p>Введите имя туземца:</p>
+    <input type="text" placeholder="Ваше имя">
+    <br><br>
+    <button onclick="alert('Теперь ты официально туземец!')">Готово</button>
+  </div>
+
+  <div id="popup">
+    <p>😄 Ты лох.</p>
+    <button onclick="closeAll()">Закрыть</button>
+  </div>
+
+  <script>
+    function showRegistration() {
+      document.getElementById('registration').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    function closeAll() {
+      document.getElementById('registration').style.display = 'none';
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
