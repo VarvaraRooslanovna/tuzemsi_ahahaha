@@ -71,6 +71,7 @@
 
   <button onclick="showRegistration()">Начать</button>
   <button onclick="showPopup()">Не нажимать</button>
+  <button onclick="goToProfile()">Войти в профиль</button>
 
   <div id="overlay" onclick="closeAll()"></div>
 
@@ -111,12 +112,19 @@
         window.location.href = "profile.html";
       } else {
         alert("Введите имя, о, туземец!");
+
+        function goToProfile() {
+  const name = localStorage.getItem("tribeName");
+  if (name) {
+    window.location.href = "profile.html";
+  } else {
+    alert("Сначала зарегистрируйтесь, туземец!");
       }
     }
 
-    if (localStorage.getItem("tribeName")) {
-      window.location.href = "profile.html";
-    }
+    //if (localStorage.getItem("tribeName")) {
+    //  window.location.href = "profile.html";
+    // }
   </script>
 
 </body>
