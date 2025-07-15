@@ -53,8 +53,8 @@
 
   <script>
     // Получение имени пользователя
-    const username = localStorage.getItem("userName");
-    document.getElementBuId("profile-name").textContent = name || "туземец";
+    const username = localStorage.getItem("username") || "Туземец";
+    document.getElementById("welcome").textContent = `Добро пожаловать, ${username}!`;
 
     // Счётчик визитов
     let visits = parseInt(localStorage.getItem("visitCount")) || 0;
@@ -110,6 +110,72 @@
     // Возврат на главную
     function goBack() {
       window.location.replace("index.html");
+    }
+  </script>
+</body>
+</html>
+
+Регистрация 
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация Туземца</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      color: #003366;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 60px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 240px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #003366;
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0055aa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать в племя!</h1>
+  <p>Введите ваше имя:</p>
+  <input type="text" id="nameInput" placeholder="Например: Ирина">
+  <br>
+  <button onclick="saveName()">Продолжить</button>
+
+  <script>
+    function saveName() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name !== "") {
+        localStorage.setItem("username", name);
+        window.location.href = "profile.html";
+      } else {
+        alert("Пожалуйста, введите имя.");
+      }
     }
   </script>
 </body>
