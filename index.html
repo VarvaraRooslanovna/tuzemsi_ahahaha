@@ -55,9 +55,9 @@
 
   <img src="f.jfif" alt="Мудрый туземец">
 
-  <button onclick="showRegistration()">Начать</button>
-  <button onclick="showPopup()">Не нажимать</button>
-  <button onclick="goToProfile()">Войти в профиль</button>
+  <button id="startBtn">Начать</button>
+  <button id="jokeBtn">Не нажимать</button>
+  <button id="profileBtn">Войти в профиль</button>
 
   <div id="overlay" onclick="closeAll()"></div>
 
@@ -66,49 +66,63 @@
     <p>Введите имя туземца:</p>
     <input type="text" id="username" placeholder="Ваше имя">
     <br><br>
-    <button onclick="saveUser()">Готово</button>
+    <button id="saveBtn">Готово</button>
   </div>
 
   <div id="popup">
     <p>😄 Ты лох.</p>
-    <button onclick="closeAll()">Закрыть</button>
+    <button id="closePopupBtn">Закрыть</button>
   </div>
 
   <script>
-    function showRegistration() {
-      document.getElementById('registration').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const startBtn = document.getElementById("startBtn");
+      const jokeBtn = document.getElementById("jokeBtn");
+      const profileBtn = document.getElementById("profileBtn");
+      const saveBtn = document.getElementById("saveBtn");
+      const closePopupBtn = document.getElementById("closePopupBtn");
 
-    function showPopup() {
-      document.getElementById('popup').style.display = 'block';
-      document.getElementById('overlay').style.display = 'block';
-    }
+      startBtn.onclick = showRegistration;
+      jokeBtn.onclick = showPopup;
+      profileBtn.onclick = goToProfile;
+      saveBtn.onclick = saveUser;
+      closePopupBtn.onclick = closeAll;
 
-    function closeAll() {
-      document.getElementById('registration').style.display = 'none';
-      document.getElementById('popup').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
-    }
-
-    function saveUser() {
-      const name = document.getElementById('username').value;
-      if (name.trim() !== "") {
-        localStorage.setItem("tribeName", name);
-        alert("Туземец зарегистрирован!");
-      } else {
-        alert("Введите имя, о, туземец!");
+      function showRegistration() {
+        document.getElementById('registration').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
       }
-    }
 
-    function goToProfile() {
-      const name = localStorage.getItem("tribeName");
-      if (name) {
-        window.location.href = "profile.html";
-      } else {
-        alert("Сначала зарегистрируйтесь, туземец!");
+      function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
       }
-    }
+
+      function closeAll() {
+        document.getElementById('registration').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+      }
+
+      function saveUser() {
+        const name = document.getElementById("username").value;
+        if (name.trim() !== "") {
+          localStorage.setItem("tribeName", name);
+          alert("Туземец зарегистрирован!");
+        } else {
+          alert("Введите имя, о, туземец!");
+        }
+      }
+
+      function goToProfile() {
+        const name = localStorage.getItem("tribeName");
+        if (name) {
+          window.location.href = "profile.html";
+        } else {
+          alert("Сначала зарегистрируйтесь, туземец!");
+        }
+      }
+    });
   </script>
 
 </body>
