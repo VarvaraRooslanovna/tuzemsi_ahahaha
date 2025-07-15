@@ -54,7 +54,7 @@
   <script>
     // Получение имени пользователя
     const username = localStorage.getItem("userName");
-    document.getElementById("profile-name").textContent = `Добро пожаловать, ${username}!`;
+    document.getElementById("profile-name").textContent = username || "туземец";
 
     // Счётчик визитов
     let visits = parseInt(localStorage.getItem("visitCount")) || 0;
