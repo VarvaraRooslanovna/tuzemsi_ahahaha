@@ -53,8 +53,8 @@
 
   <script>
     // Получение имени пользователя
-    const username = localStorage.getItem("username") || "Туземец";
-    document.getElementById("welcome").textContent = `Добро пожаловать, ${username}!`;
+    const username = localStorage.getItem("userName");
+    document.getElementById("profile-name").textContent = `Добро пожаловать, ${username}!`;
 
     // Счётчик визитов
     let visits = parseInt(localStorage.getItem("visitCount")) || 0;
