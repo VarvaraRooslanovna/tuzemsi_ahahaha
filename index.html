@@ -109,14 +109,12 @@
       const name = document.getElementById('username').value;
       if (name.trim() !== "") {
         localStorage.setItem("tribeName", name);
-        window.location.href = "profile.html";
       } else {
         alert("Введите имя, о, туземец!");
 
         function goToProfile() {
   const name = localStorage.getItem("tribeName");
   if (name) {
-    window.location.href = "profile.html";
   } else {
     alert("Сначала зарегистрируйтесь, туземец!");
       }
