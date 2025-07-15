@@ -14,7 +14,12 @@
 
     h1 {
       font-size: 32px;
-      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
     }
 
     #achievement {
@@ -40,12 +45,17 @@
   </style>
 </head>
 <body>
+  <h2 id="welcome">Добро пожаловать!</h2>
   <h1 id="greeting">🪶</h1>
   <div id="achievement"></div>
 
   <button onclick="goBack()">← Вернуться на главную</button>
 
   <script>
+    // Получение имени пользователя
+    const username = localStorage.getItem("username") || "Туземец";
+    document.getElementById("welcome").textContent = `Добро пожаловать, ${username}!`;
+
     // Счётчик визитов
     let visits = parseInt(localStorage.getItem("visitCount")) || 0;
     visits += 1;
@@ -84,8 +94,8 @@
 
     let message;
     if (visits === 100) {
-      message = "Юхухуху! Юбилей🥳 Гуляем! Ты зашёл сюда 100 раз!";
-      document.getElementById("achievement").textContent = "🏆 Достижение: Легенда";
+      message = `Юхухуху! Юбилей🥳 Гуляем! Ты зашёл сюда 100 раз!`;
+      document.getElementById("achievement").textContent = `🏆 Достижение: ${username}, ты — Легенда`;
     } else if (visits === 28) {
       message = "28 заходов, ты действовал наверняка, да?";
     } else if (visits === 10) {
@@ -99,7 +109,7 @@
 
     // Возврат на главную
     function goBack() {
-      window.location.href = "index.html";
+      window.location.replace("index.html");
     }
   </script>
 </body>
