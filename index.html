@@ -11,9 +11,21 @@
       text-align: center;
       padding: 60px;
     }
-    h1 { font-size: 36px; margin-bottom: 10px; color: #4db8ff; }
-    h2 { font-size: 24px; margin-bottom: 20px; color: #b3dcff; }
-    img { max-width: 100%; border-radius: 12px; margin: 30px 0; }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #4db8ff;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #b3dcff;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 30px 0;
+    }
     button {
       background-color: #4db8ff;
       color: #fff;
@@ -24,7 +36,9 @@
       border-radius: 8px;
       cursor: pointer;
     }
-    button:hover { background-color: #3399cc; }
+    button:hover {
+      background-color: #3399cc;
+    }
     #registration, #popup {
       display: none;
       background-color: #fff;
@@ -46,6 +60,10 @@
       background-color: rgba(0,0,0,0.5);
       z-index: 5;
     }
+  </style>
+</head>
+<body>
+
   <h1>Мотивация от туземцев</h1>
   <h2>тролололололо</h2>
 
@@ -70,35 +88,36 @@
   </div>
 
   <script>
-  function showRegistration() {
-    document.getElementById('registration').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-  }
-
-  function showPopup() {
-    document.getElementById('popup').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-  }
-
-  function closeAll() {
-    document.getElementById('registration').style.display = 'none';
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-  }
-
-  function saveUser() {
-    const name = document.getElementById('username').value;
-    if (name.trim() !== "") {
-      localStorage.setItem("tribeName", name);
-      window.location.href = "profile.html";
-    } else {
-      alert("Введите имя, о, туземец!");
+    function showRegistration() {
+      document.getElementById('registration').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
     }
-  }
 
-  if (localStorage.getItem("tribeName")) {
-    window.location.href = "profile.html";
-  }
-</script>
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeAll() {
+      document.getElementById('registration').style.display = 'none';
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function saveUser() {
+      const name = document.getElementById('username').value;
+      if (name.trim() !== "") {
+        localStorage.setItem("tribeName", name);
+        window.location.href = "profile.html";
+      } else {
+        alert("Введите имя, о, туземец!");
+      }
+    }
+
+    if (localStorage.getItem("tribeName")) {
+      window.location.href = "profile.html";
+    }
+  </script>
+
 </body>
 </html>
