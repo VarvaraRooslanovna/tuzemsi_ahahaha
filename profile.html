@@ -5,54 +5,102 @@
   <title>Профиль Туземца</title>
   <style>
     body {
-      background-color: #ffe4c4;
+      background-color: #ffffff;
+      color: #003366;
       font-family: sans-serif;
       text-align: center;
       padding: 60px;
     }
+
     h1 {
       font-size: 32px;
-      color: #3e2723;
+      color: #003366;
     }
-    img {
-      max-width: 240px;
-      margin-top: 30px;
-      border-radius: 12px;
+
+    #achievement {
+      margin-top: 16px;
+      font-weight: bold;
+      color: #cc6600;
     }
+
     button {
       margin-top: 40px;
       padding: 12px 24px;
-      background-color: #f57c00;
+      background-color: #003366;
       border: none;
       color: white;
       font-size: 18px;
       border-radius: 8px;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: #e64a19;
+      background-color: #0055aa;
     }
   </style>
 </head>
 <body>
-
-  <h1 id="greeting">Привет, туземец!</h1>
-  <img src="f.jfif" alt="Туземный аватар">
+  <h1 id="greeting">🪶</h1>
+  <div id="achievement"></div>
 
   <button onclick="goBack()">← Вернуться на главную</button>
 
   <script>
-    const name = localStorage.getItem("tribeName");
-    if (name) {
-      document.getElementById("greeting").textContent = Привет, туземец ${name}!;
+    // Счётчик визитов
+    let visits = parseInt(localStorage.getItem("visitCount")) || 0;
+    visits += 1;
+    localStorage.setItem("visitCount", visits);
+
+    // Фразы
+    const regularPhrases = [
+      "Не хватай жабу за язык.",
+      "Туземец, будь как банан: снаружи простой, внутри мудрый.",
+      "Лучше иметь друга, чем Павла.",
+      "НЕ БАЙ ДОЖЕ!",
+      "Бочаров — бог всея Руси.",
+      "Ничего не бойся, я с едой.",
+      "Артути — канон.",
+      "Мавзолей — точка спавна китайцев.",
+      "Ядрить твою через коромысло.",
+      "Мумумумумуму.",
+      "The Beatles (сразу видно, кто писал, да?)",
+      "Гончаровой будет Юдин."
+    ];
+
+    const nightPhrases = [
+      "А ты поздняя пташка!",
+      "Тоже не спится, да?",
+      "Решил пораньше выполнить цель?",
+      "Гони спать, че лупишь то",
+      "Если ты это читаешь зимой, то у тебя точно темно за окном. Если летом (особенно в Питере), то хрен знает",
+      "Молодец, что вместо ночного дожора выбрал ночное выполнение челленджа",
+      "С тобой разговаривает монстр под кроватью. Шутка. Он сидит там молча",
+      "😴💤💤💤"
+    ];
+
+    // Выбор фразы
+    const hour = new Date().getHours();
+    const isNight = hour >= 0 && hour < 6;
+
+    let message;
+    if (visits === 100) {
+      message = "Юхухуху! Юбилей🥳 Гуляем! Ты зашёл сюда 100 раз!";
+      document.getElementById("achievement").textContent = "🏆 Достижение: Легенда";
+    } else if (visits === 28) {
+      message = "28 заходов, ты действовал наверняка, да?";
+    } else if (visits === 10) {
+      message = "Какой ненасытный, 10 раз сюда уже зашёл";
     } else {
-      window.location.href = "index.html";
+      const pool = isNight ? nightPhrases : regularPhrases;
+      message = pool[Math.floor(Math.random() * pool.length)];
     }
 
+    document.getElementById("greeting").textContent = message;
+
+    // Возврат на главную
     function goBack() {
       window.location.href = "index.html";
     }
   </script>
-
 </body>
 </html>
