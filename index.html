@@ -59,7 +59,7 @@
   <button id="jokeBtn">Не нажимать</button>
   <button id="profileBtn">Войти в профиль</button>
 
-  <div id="overlay" onclick="closeAll()"></div>
+  <div id="overlay"></div>
 
   <div id="registration">
     <h3>Регистрация</h3>
@@ -76,37 +76,42 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // элементы
       const startBtn = document.getElementById("startBtn");
       const jokeBtn = document.getElementById("jokeBtn");
       const profileBtn = document.getElementById("profileBtn");
       const saveBtn = document.getElementById("saveBtn");
       const closePopupBtn = document.getElementById("closePopupBtn");
+      const overlay = document.getElementById("overlay");
 
+      // обработчики
       startBtn.onclick = showRegistration;
       jokeBtn.onclick = showPopup;
       profileBtn.onclick = goToProfile;
       saveBtn.onclick = saveUser;
       closePopupBtn.onclick = closeAll;
+      overlay.onclick = closeAll;
 
+      // функции
       function showRegistration() {
         document.getElementById('registration').style.display = 'block';
-        document.getElementById('overlay').style.display = 'block';
+        overlay.style.display = 'block';
       }
 
       function showPopup() {
         document.getElementById('popup').style.display = 'block';
-        document.getElementById('overlay').style.display = 'block';
+        overlay.style.display = 'block';
       }
 
       function closeAll() {
         document.getElementById('registration').style.display = 'none';
         document.getElementById('popup').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
+        overlay.style.display = 'none';
       }
 
       function saveUser() {
-        const name = document.getElementById("username").value;
-        if (name.trim() !== "") {
+        const name = document.getElementById("username").value.trim();
+        if (name) {
           localStorage.setItem("tribeName", name);
           alert("Туземец зарегистрирован!");
         } else {
