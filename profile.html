@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Профиль Туземца</title>
+  <style>
+    body {
+      background-color: #ffe4c4;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 60px;
+    }
+    h1 {
+      font-size: 32px;
+      color: #3e2723;
+    }
+    img {
+      max-width: 240px;
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+    button {
+      margin-top: 40px;
+      padding: 12px 24px;
+      background-color: #f57c00;
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="greeting">Привет, туземец!</h1>
+  <img src="f.jfif" alt="Туземный аватар">
+
+  <button onclick="goBack()">← Вернуться на главную</button>
+
+  <script>
+    const name = localStorage.getItem("tribeName");
+    if (name) {
+      document.getElementById("greeting").textContent = Привет, туземец ${name}!;
+    } else {
+      window.location.href = "index.html";
+    }
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
