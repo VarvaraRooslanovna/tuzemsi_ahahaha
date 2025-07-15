@@ -91,4 +91,13 @@
     }
 
     function saveUser() {
-      const
+      const name = localStonge.getItem("tribeName");
+
+      if (name) {
+  document.getElementById("greeting").textContent = Привет, туземец ${name}!;
+} else {
+  window.location.href = "index.html";
+}
+</script>
+</body>
+</html>
