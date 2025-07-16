@@ -60,24 +60,19 @@
   <!-- Звук -->
   <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
 
-  <script>
-    function saveName() {
-      const name = document.getElementById("nameInput").value.trim();
-      if (name !== "") {
-        localStorage.setItem("username", name);
-        window.location.href = "profile.html";
-      } else {
-        alert("Пожалуйста, введите имя.");
-      }
-    }
-
+ <script>
+  window.addEventListener("DOMContentLoaded", () => {
     const magicButton = document.getElementById("magic-button");
     const shamanSound = document.getElementById("shaman-sound");
 
     function playShamanSound() {
       if (shamanSound) {
-        shamanSound.currentTime = 0;
-        shamanSound.play();
+        try {
+          shamanSound.currentTime = 0;
+          shamanSound.play();
+        } catch (error) {
+          console.warn("Звук не воспроизвёлся, но кнопка всё равно шастает");
+        }
       }
     }
 
@@ -91,6 +86,7 @@
         magicButton.style.left = `${offsetX}px`;
         magicButton.style.top = `${offsetY}px`;
         playShamanSound();
+        console.log("🔮 Кнопка убежала!");
       }
     });
 
@@ -100,7 +96,9 @@
       magicButton.style.left = `${offsetX}px`;
       magicButton.style.top = `${offsetY}px`;
       playShamanSound();
+      console.log("📱 Телепорт на мобилке!");
     });
-  </script>
+  });
+</script>
 </body>
 </html>
