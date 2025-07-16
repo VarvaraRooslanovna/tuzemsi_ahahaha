@@ -8,8 +8,8 @@
       background-color: #f4f4f4;
       color: #003366;
       font-family: sans-serif;
-      text-align: center;
       padding: 60px;
+      margin: 0;
     }
 
     input {
@@ -35,16 +35,40 @@
       background-color: #0055aa;
     }
 
-    #magic-button {
-      position: absolute;
-      top: 160px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #ccffcc;
-      border: 2px dashed #009966;
-      z-index: 9999;
+    /* Меню */
+    #menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 100vh;
+      background-color: #e6ffe6;
+      border-left: 3px dashed #009966;
+      padding: 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    #menu h3 {
+      margin-top: 0;
+      color: #006633;
+      font-size: 20px;
+    }
+
+    #menu ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #menu li {
+      margin: 12px 0;
+      font-size: 16px;
+      color: #003366;
+      cursor: pointer;
+    }
+
+    #menu li:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -54,61 +78,27 @@
   <br>
   <button onclick="saveName()">Продолжить</button>
 
-  <!-- Шаманская кнопка -->
-  <button id="magic-button">меню</button>
+  <!-- Меню -->
+  <div id="menu">
+    <h3>Меню</h3>
+    <ul>
+      <li>Профиль</li>
+      <li>Настройки</li>
+      <li>О проекте</li>
+      <li>Выход</li>
+    </ul>
+  </div>
 
-  <!-- Звук -->
-  <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
-
- <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const magicButton = document.getElementById("magic-button");
-    const shamanSound = document.getElementById("shaman-sound");
-
-    function playShamanSound() {
-      if (shamanSound) {
-        try {
-          shamanSound.currentTime = 0;
-          shamanSound.play();
-        } catch (error) {
-          console.warn("Звук не воспроизвёлся, но кнопка всё равно шастает");
-        }
+  <script>
+    function saveName() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name !== "") {
+        localStorage.setItem("username", name);
+        window.location.href = "profile.html";
+      } else {
+        alert("Пожалуйста, введите имя.");
       }
     }
-
-    document.addEventListener("mousemove", (e) => {
-      const rect = magicButton.getBoundingClientRect();
-      const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
-
-      if (dist < 100) {
-        const offsetX = Math.random() * window.innerWidth * 0.8;
-        const offsetY = Math.random() * window.innerHeight * 0.8;
-        magicButton.style.left = `${offsetX}px`;
-        magicButton.style.top = `${offsetY}px`;
-        playShamanSound()function playShamanSound() {
-  console.log("🐾 попытка воспроизведения");
-  if (shamanSound) {
-    try {
-      shamanSound.currentTime = 0;
-      shamanSound.play();
-    } catch (error) {
-      console.warn("Звук не воспроизвёлся, но кнопка всё равно шастает");
-    }
-  }
-}
-        console.log("🔮 Кнопка убежала!");
-      }
-    });
-
-    magicButton.addEventListener("touchstart", () => {
-      const offsetX = Math.random() * window.innerWidth * 0.8;
-      const offsetY = Math.random() * window.innerHeight * 0.8;
-      magicButton.style.left = `${offsetX}px`;
-      magicButton.style.top = `${offsetY}px`;
-      playShamanSound();
-      console.log("📱 Телепорт на мобилке!");
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
