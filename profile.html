@@ -157,12 +157,27 @@
       background-color: #0055aa;
     }
   </style>
+
+  <style>
+  #magic-button {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    font-size: 18px;
+    transition: top 0.2s ease, left 0.2s ease;
+    z-index: 10;
+  }
+</style>
+
 </head>
 <body>
   <p>Введите ваше имя, ещё раз, потому что Варя тупая, не может сделать адекватно всё:</p>
   <input type="text" id="nameInput" placeholder="Например: Миттятятя">
   <br>
   <button onclick="saveName()">Продолжить</button>
+  <button id="magic-button">меню</button>
 
   <script>
     function saveName() {
@@ -174,6 +189,48 @@
         alert("Пожалуйста, введите имя.");
       }
     }
+
+    <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
+    <button id="continue-button">Продолжить</button>
+<button id="magic-button">меню</button>
+
+<audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
+
+<script>
+  const magicButton = document.getElementById("magic-button");
+  const shamanSound = document.getElementById("shaman-sound");
+
+  function playShamanSound() {
+    if (shamanSound) {
+      shamanSound.currentTime = 0;
+      shamanSound.play();
+    }
+  }
+
+  // Побег на десктопе
+  document.addEventListener("mousemove", (e) => {
+    const rect = magicButton.getBoundingClientRect();
+    const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
+
+    if (dist < 100) {
+      const offsetX = Math.random() * window.innerWidth * 0.8;
+      const offsetY = Math.random() * window.innerHeight * 0.8;
+      magicButton.style.left = `${offsetX}px`;
+      magicButton.style.top = `${offsetY}px`;
+      playShamanSound();
+    }
+  });
+
+  // Телепортация на телефоне
+  magicButton.addEventListener("touchstart", () => {
+    const offsetX = Math.random() * window.innerWidth * 0.8;
+    const offsetY = Math.random() * window.innerHeight * 0.8;
+    magicButton.style.left = `${offsetX}px`;
+    magicButton.style.top = `${offsetY}px`;
+    playShamanSound();
+  });
+</script>
+
   </script>
 </body>
 </html>
