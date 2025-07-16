@@ -201,48 +201,6 @@
 <!-- Новый шаманский звук -->
 <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
 
-    <script>
-  const magicButton = document.getElementById("magic-button");
-  const shamanSound = document.getElementById("shaman-sound");
-
-  function playShamanSound() {
-    if (shamanSound) {
-      shamanSound.currentTime = 0;
-      shamanSound.play();
-    }
-  }
-
-  // Побег на десктопе
-  document.addEventListener("mousemove", (e) => {
-    const rect = magicButton.getBoundingClientRect();
-    const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
-
-    if (dist < 100) {
-      const offsetX = Math.random() * window.innerWidth * 0.8;
-      const offsetY = Math.random() * window.innerHeight * 0.8;
-      magicButton.style.left = `${offsetX}px`;
-      magicButton.style.top = `${offsetY}px`;
-      playShamanSound();
-    }
-  });
-
-  // Телепортация на мобильнике
-  magicButton.addEventListener("touchstart", () => {
-    const offsetX = Math.random() * window.innerWidth * 0.8;
-    const offsetY = Math.random() * window.innerHeight * 0.8;
-    magicButton.style.left = `${offsetX}px`;
-    magicButton.style.top = `${offsetY}px`;
-    playShamanSound();
-  });
-
-</script>
-
-  </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Меню Туземца</title>
