@@ -85,7 +85,17 @@
         const offsetY = Math.random() * window.innerHeight * 0.8;
         magicButton.style.left = `${offsetX}px`;
         magicButton.style.top = `${offsetY}px`;
-        playShamanSound();
+        playShamanSound()function playShamanSound() {
+  console.log("🐾 попытка воспроизведения");
+  if (shamanSound) {
+    try {
+      shamanSound.currentTime = 0;
+      shamanSound.play();
+    } catch (error) {
+      console.warn("Звук не воспроизвёлся, но кнопка всё равно шастает");
+    }
+  }
+}
         console.log("🔮 Кнопка убежала!");
       }
     });
