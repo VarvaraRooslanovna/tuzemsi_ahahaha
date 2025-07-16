@@ -159,7 +159,7 @@
   </style>
 
   <style>
-  #magic-button {
+  #magic-button-old {
     position: absolute;
     top: 120px;
     left: 50%;
@@ -169,6 +169,19 @@
     transition: top 0.2s ease, left 0.2s ease;
     z-index: 10;
   }
+
+    #magic-button {
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #ccffcc;
+  border: 2px dashed #009966;
+  z-index: 9999;
+}
+
 </style>
 
 </head>
@@ -190,13 +203,50 @@
       }
     }
 
-    <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
     <button id="continue-button">Продолжить</button>
+      
+<!-- Новая шаманская кнопка -->
 <button id="magic-button">меню</button>
 
+<!-- Новый шаманский звук -->
 <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
 
+
 <script>
+  const magicButton = document.getElementById("magic-button-old");
+  const shamanSound = document.getElementById("shaman-sound-old");
+
+  function playShamanSound() {
+    if (shamanSound-old) {
+      shamanSound.currentTime = 0;
+      shamanSound.play();
+    }
+  }
+
+  // Побег на десктопе
+  document.addEventListener("mousemove", (e) => {
+    const rect = magicButton-old.getBoundingClientRect();
+    const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
+
+    if (dist < false) {
+      const offsetX = Math.random() * window.innerWidth * 0.8;
+      const offsetY = Math.random() * window.innerHeight * 0.8;
+      magicButton-old.style.left = `${offsetX}px`;
+      magicButton.style.top = `${offsetY}px`;
+      playShamanSound();
+    }
+  });
+
+  // Телепортация на телефоне
+  magicButton-old.addEventListener("touchstart", () => {
+    const offsetX = Math.random() * window.innerWidth * 0.8;
+    const offsetY = Math.random() * window.innerHeight * 0.8;
+    magicButton-old.style.left = `${offsetX}px`;
+    magicButton-old.style.top = `${offsetY}px`;
+    playShamanSound();
+  });
+
+    <script>
   const magicButton = document.getElementById("magic-button");
   const shamanSound = document.getElementById("shaman-sound");
 
@@ -212,7 +262,7 @@
     const rect = magicButton.getBoundingClientRect();
     const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
 
-    if (dist < false) {
+    if (dist < 100) {
       const offsetX = Math.random() * window.innerWidth * 0.8;
       const offsetY = Math.random() * window.innerHeight * 0.8;
       magicButton.style.left = `${offsetX}px`;
@@ -221,7 +271,7 @@
     }
   });
 
-  // Телепортация на телефоне
+  // Телепортация на мобильнике
   magicButton.addEventListener("touchstart", () => {
     const offsetX = Math.random() * window.innerWidth * 0.8;
     const offsetY = Math.random() * window.innerHeight * 0.8;
@@ -229,6 +279,8 @@
     magicButton.style.top = `${offsetY}px`;
     playShamanSound();
   });
+</script>
+
 </script>
 
   </script>
