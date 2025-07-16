@@ -208,11 +208,11 @@
   }
 
   // Побег на десктопе
-  //document.addEventListener("mousemove", (e) => {
+  document.addEventListener("mousemove", (e) => {
     const rect = magicButton.getBoundingClientRect();
     const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
 
-    if (dist < 100) {
+    if (dist < false) {
       const offsetX = Math.random() * window.innerWidth * 0.8;
       const offsetY = Math.random() * window.innerHeight * 0.8;
       magicButton.style.left = `${offsetX}px`;
