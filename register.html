@@ -12,11 +12,6 @@
       padding: 60px;
     }
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
     input {
       padding: 12px;
       font-size: 18px;
@@ -39,14 +34,31 @@
     button:hover {
       background-color: #0055aa;
     }
+
+    #magic-button {
+      position: absolute;
+      top: 160px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #ccffcc;
+      border: 2px dashed #009966;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
-  <h1>Добро пожаловать в племя!</h1>
   <p>Введите ваше имя:</p>
-  <input type="text" id="nameInput" placeholder="Например: Ирина">
+  <input type="text" id="nameInput" placeholder="Например: Миттятятя">
   <br>
   <button onclick="saveName()">Продолжить</button>
+
+  <!-- Шаманская кнопка -->
+  <button id="magic-button">меню</button>
+
+  <!-- Звук -->
+  <audio id="shaman-sound" src="shast.mp3" preload="auto"></audio>
 
   <script>
     function saveName() {
@@ -58,6 +70,37 @@
         alert("Пожалуйста, введите имя.");
       }
     }
+
+    const magicButton = document.getElementById("magic-button");
+    const shamanSound = document.getElementById("shaman-sound");
+
+    function playShamanSound() {
+      if (shamanSound) {
+        shamanSound.currentTime = 0;
+        shamanSound.play();
+      }
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      const rect = magicButton.getBoundingClientRect();
+      const dist = Math.hypot(e.clientX - rect.left, e.clientY - rect.top);
+
+      if (dist < 100) {
+        const offsetX = Math.random() * window.innerWidth * 0.8;
+        const offsetY = Math.random() * window.innerHeight * 0.8;
+        magicButton.style.left = `${offsetX}px`;
+        magicButton.style.top = `${offsetY}px`;
+        playShamanSound();
+      }
+    });
+
+    magicButton.addEventListener("touchstart", () => {
+      const offsetX = Math.random() * window.innerWidth * 0.8;
+      const offsetY = Math.random() * window.innerHeight * 0.8;
+      magicButton.style.left = `${offsetX}px`;
+      magicButton.style.top = `${offsetY}px`;
+      playShamanSound();
+    });
   </script>
 </body>
 </html>
